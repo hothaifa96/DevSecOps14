@@ -105,7 +105,8 @@ for i in range(1000):
 
 print(random_numbers)
 
-uniques = list(set(random_numbers))  # delete all the duplicates by casting the list to set      convert the set to list so we can mod
+uniques = list(
+    set(random_numbers))  # delete all the duplicates by casting the list to set      convert the set to list so we can mod
 print(uniques)
 
 for un in uniques:
