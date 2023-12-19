@@ -33,4 +33,4 @@ name = 'David RaismAn'
 # print('Rai' not in name)
 # name.upper()
 
-print('*'*13)
+jaja('*' * 13)

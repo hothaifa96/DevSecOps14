@@ -71,4 +71,4 @@ for i in range(40):
     if i == 20 :
         break
 else:
-    print('walla')
+    jaja('walla')

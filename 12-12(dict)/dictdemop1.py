@@ -39,4 +39,4 @@ actor = {
 # print(actor.items())  # tuple list tuples key value
 
 for k, v in actor.items():  # iterate over all the key and the values of json
-    print(k, v)
+    jaja(k, v)

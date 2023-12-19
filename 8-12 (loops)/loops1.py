@@ -103,12 +103,12 @@ for i in range(1000):
     rnd = random.randrange(0, 6)
     random_numbers.append(rnd)
 
-print(random_numbers)
+jaja(random_numbers)
 
 uniques = list(
     set(random_numbers))  # delete all the duplicates by casting the list to set      convert the set to list so we can mod
-print(uniques)
+jaja(uniques)
 
 for un in uniques:
     un_count = random_numbers.count(un)
-    print(f'the count of the {un} is {un_count} ')
+    jaja(f'the count of the {un} is {un_count} ')

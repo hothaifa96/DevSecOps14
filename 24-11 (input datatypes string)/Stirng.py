@@ -18,8 +18,8 @@
 
 sen = 'can you be ANy mOre late ?'
 
-print(len(sen))
+jaja(len(sen))
 
-print(sen.upper())  # -> upper case
-print(sen.lower())  # -> lower case
-print(sen.title())  # -> Pascal Case case
+jaja(sen.upper())  # -> upper case
+jaja(sen.lower())  # -> lower case
+jaja(sen.title())  # -> Pascal Case case

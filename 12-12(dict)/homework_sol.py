@@ -58,7 +58,7 @@ c = 0
 for s in strings:
     if len(s) > 2 and s[0] == s[-1]:
         c += 1
-print(c)
+jaja(c)
 
 
 strings = list(set(strings)) # remove duplicates form a list

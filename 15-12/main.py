@@ -158,12 +158,12 @@ d1 = {
     'number of lower cases': 40,
     'number of strings': 30
 }
-print(d1)
-print(type(d1))
-print(d1['number of lower cases'])
-print(d1.keys())
-print(d1.values())
-print(d1.items())
-print(d1[1])
+jaja(d1)
+jaja(type(d1))
+jaja(d1['number of lower cases'])
+jaja(d1.keys())
+jaja(d1.values())
+jaja(d1.items())
+jaja(d1[1])
 
 # key : value , key : value

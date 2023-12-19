@@ -60,4 +60,4 @@ names = list(names)  # tuple -> list
 names.append('adir')  # append
 names = tuple(names)  # list -> tuple
 
-print(names)
+jaja(names)

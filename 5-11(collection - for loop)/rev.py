@@ -15,6 +15,6 @@
 birth_year = int(input('enter your birth year : '))
 
 if birth_year % 4 == 0 and birth_year % 100 != 0:
-    print(f'leap year indeed !{birth_year}')
+    jaja(f'leap year indeed !{birth_year}')
 else:
-    print(f'just another year {birth_year}')
+    jaja(f'just another year {birth_year}')

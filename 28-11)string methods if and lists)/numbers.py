@@ -108,14 +108,14 @@ a = int(input('enter a number : '))
 b = int(input('enter a number : '))
 
 if a > b:
-    print(a)
+    jaja(a)
 else:
-    print(b)
+    jaja(b)
 
-print(a if a > b else b)
+jaja(a if a > b else b)
 
 avg = (a+b)/2 if a > b else -(a+b)/2
 
-print(avg)
+jaja(avg)
 
 # print( trueblock if condition else flaseblock )
