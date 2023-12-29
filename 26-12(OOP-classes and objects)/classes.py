@@ -12,7 +12,7 @@ class Dog:
     def bark(self, sound):
         print(f'im barking {sound}')
 
-    def age_in_years(self):
+    def get_age_in_years(self):
         return self.age / 12
 
     def __str__(self):

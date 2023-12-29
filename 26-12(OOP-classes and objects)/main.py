@@ -75,6 +75,12 @@ class Person(object):
     def __bool__(self):
         return True if len(self.name) > 4 else False
 
+    def __repr__(self):
+        '''
+
+        :return: print a look alike object code
+        '''
+        return "Person('hodi', 'male', 11, 'white') "
 
 
 p3 = Person('hodi', 'male', 11, 'white')  # class name ()
