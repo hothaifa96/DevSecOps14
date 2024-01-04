@@ -36,7 +36,15 @@ class Car(Vehicle):
 c1 = Car(299, 'aston martin', 1099, 'black')
 t1 = Truck(101, 'DAF', 700, 20, 18)
 v1 = Vehicle(100, 'volvo', 899)
+#
+# print(isinstance({}, set))
+# print(isinstance({}, dict))
+# print(issubclass(str, object))
 
-print(isinstance({}, set))
-print(isinstance({}, dict))
-print(issubclass(str, object))
+
+li = [c1, t1, v1]
+
+
+
+for vehicle in li:
+    vehicle.stop()
