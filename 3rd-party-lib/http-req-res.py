@@ -1,4 +1,4 @@
-ximport requests
+import requests
 
 url = 'https://jsonplaceholder.typicode.com/usesssrs'
 res = requests.get(url)  # GET request to the url and the response stored in the res variable
