@@ -47,13 +47,27 @@ def add_movie():
 def change_movie(id):
     new_movie = request.json  # take the new movie from the body of the request
     for i in range(len(movies)):  # iterate over all the movies indexes
-        if movies[i]['id'] == id: # if the id of the movie matches the param id
-            movies.pop(i) # remove the old movie
-            movies.insert(i, new_movie) # add new movie
-    return 'Done'
+        if movies[i]['id'] == id:  # if the id of the movie matches the param id
+            movies.pop(i)  # remove the old movie
+            movies.insert(i, new_movie)  # add new movie
+    return 'DoDO'
 
 
 # delete -> remove all the movies
+@app.delete('/movie')
+def delete_all_movies():
+    movies.clear()
+    return movies
+
+
 # delete /id -> delete one movie
+@app.delete('/movie/<int:id>')
+def delete_movie(id):
+    for movie in movies:
+        if movie['id'] == id:
+            movies.remove(movie)
+    return 'Done'
+
+
 
 app.run()
