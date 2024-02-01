@@ -1,0 +1,22 @@
+version: '3.1'
+
+services:
+  mongo: # the name of the db container
+    image: mongo:latest # conatiner image
+    ports:
+      - 27017:27017 # published ports
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: asaf
+      MONGO_INITDB_ROOT_PASSWORD: david
+    
+  ui: # the name of the ui container
+    image: mongo-express # conatiner image
+    ports:
+      - 8081:8081 # published ports
+    environment:
+      ME_CONFIG_MONGODB_ENABLE_ADMIN: true
+      ME_CONFIG_MONGODB_ADMINUSERNAME: asaf
+      ME_CONFIG_MONGODB_ADMINPASSWORD: david
+      ME_CONFIG_MONGODB_SERVER: mongo
+    depends_on:
+      - mongo

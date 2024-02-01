@@ -1,27 +1,34 @@
-version: "3.8"
+version: '3.1'
 
 services:
-  api:
-    build: ./backend
-    depends_on:
-      - db
-    ports:
-      - 3001:3001
-    environment:
-      - DB_URL=mongodb://db/vidly
-    command: ./docker-entrypoint.sh
   ui:
     build: ./frontend
-    depends_on:
-      - api
     ports:
       - 3000:3000
-  db:
+    depends_on:
+      - api
+  api:
+    build: ./backend
+    ports:
+      - 3001:3001
+    depends_on:
+      - mongo
+    environment:
+      DB_URL: mongodb://mongo/vidly
+    entrypoint: ./docker-entrypoint.sh
+  mongo:
     image: mongo:4.0-xenial
     ports:
-      - 27017:27017
-    volumes:
-      - vidly:/data/db   
+      - 27017:27017 #
+      - 27019:27017
 
-volumes:
-  vidly: 
+  dbui:
+    image: mongo-express # conatiner image
+    ports:
+      - 8081:8081 # published ports
+    environment:
+      ME_CONFIG_MONGODB_ENABLE_ADMIN: true
+      ME_CONFIG_MONGODB_SERVER: mongo
+    depends_on:
+      - mongo
+    
