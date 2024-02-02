@@ -6,7 +6,7 @@ RUN npm i
 # RUN chown -R node:node /app
 COPY . .
 EXPOSE 3001
-RUN chmod o-r package*.json
+# RUN chmod o-r package*.json
 USER node:node
 
 CMD [ "npm", "start"]
