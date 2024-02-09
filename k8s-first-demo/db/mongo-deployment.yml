@@ -31,4 +31,3 @@ spec:
                 secretKeyRef:
                   name: mongo-secrets
                   key: mongo-password 
-                  ¸
