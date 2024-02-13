@@ -1,0 +1,23 @@
+apiVErsion: apps/v1
+kind: Deployment
+metadata:
+  name: big-B-deployment
+  lables:
+    app: big-B
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: big-B
+  template:
+    metadata:
+      name: big-B-Pod
+      labels:
+        app: big-B
+    spec:
+      containers:
+        - name: big-B-container
+          image: big-button
+          ports:
+          - containerPort: 3000
+---
