@@ -25,7 +25,7 @@ pipeline{
         stage("test"){
             steps{
                 sh 'docker run -d -p 8090:80 movies-jenkins:v1 ' // run the contaienr on port 8090
-                sh 'sleep 5 docker ps'
+                sh 'docker ps'
                 }
             }
     }
