@@ -1,0 +1,37 @@
+pipeline{
+    agent any
+    environment {
+        // env_name = env_value 
+        FOLDER_NAME= 'big-button-react-app'
+        GITHUME_USERNAME='devopsPRO27'
+        CODE_DIR='movie-land'
+        IMAGE_NAME='${FOLDER_NAME}:v1.${BUILD_NUMBER}'
+        BUCKET_NAME='hodi'
+    }
+
+    stages{
+        stage("clonning"){
+            steps{
+                sh "git clone https://github.com/${GITHUME_USERNAME}/${FOLDER_NAME}"
+            }
+        }
+        stage('build docker image'){
+            steps{
+                timeout(time: 4, unit: 'SECONDE'){
+                dir(${FOLDER_NAME}){
+                    dir(${CODE_DIR}){
+                        sh 'docker build -t ${IMAGE_NAME} .' 
+                    }
+                }
+                }
+            }
+        }
+        stage('push image'){
+            steps{
+                retry(3){
+                    sh 'docker save ${IMAGE_NAME} > ${FOLDER_NAME}.tar '
+                }
+            }
+        }
+    }
+}
