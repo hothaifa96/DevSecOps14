@@ -12,7 +12,7 @@ pipeline{
             }
             post{
                 always{
-                    sh "rm -f Dockerfile"
+                    sh "rm -f Dockerfile "
                 }
                 success{
                     echo "well done"
