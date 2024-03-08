@@ -31,7 +31,7 @@ pipeline{
     }
     post{
         always{
-            echo "========always========"
+            echo "docker rm -f $(docker ps -qa)"
         }
         success{
             echo "========pipeline executed successfully ========"
