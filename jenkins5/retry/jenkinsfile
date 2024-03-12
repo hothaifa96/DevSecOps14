@@ -8,7 +8,8 @@ pipeline{
         
     }
     stages{
-        stage("Docker-Verify"){
+        parallel{
+stage("Docker-Verify"){
             steps{
                withCredentials([usernamePassword(credentialsId: 'DockerCred',usernameVariable:'USERNAME',passwordVariable:'PASS')]){
                     sh 'echo username : ${USERNAME}'
@@ -24,7 +25,7 @@ pipeline{
             steps{
                 retry(3){
                     timeout(time: 1, unit: 'SECONDS'){
-                        sh 'ping -c 30 8.8.8.8&'
+                        sh 'ping -c 1 8.8.8.8&'
                     }
                 }
             }
@@ -34,6 +35,8 @@ pipeline{
                sh 'git --version'
             }
         }
+        }
+        
         stage("docker-build"){
             steps{
                 dir('Labs'){
