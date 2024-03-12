@@ -8,7 +8,7 @@ pipeline{
         stage("Docker-Verify"){
             steps{
                 retry(3){
-                    sh 'ehco ${VERSION}'
+                    sh 'echo ${VERSION}'
                 }
                sh 'docker --version'
             }
@@ -22,6 +22,7 @@ pipeline{
             steps{
                 dir('Labs'){
                     sh 'pwd'
+                    sleep(10)
                     dir('Task6'){
                        sh 'docker build -t ${IMAGE_NAME}:${VERSION} .' // docker build -t jenbababab:latest --file ./Labs/Task6/Dockerfile .
                     }
