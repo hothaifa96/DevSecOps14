@@ -1,0 +1,35 @@
+pipeline{
+    agent any
+    environment {
+        IMAGE_NAME='myhttpd'
+        VERSION = 'v1.0.0'
+    }
+    stages{
+        stage("Docker-Verify"){
+            steps{
+               sh 'docker --version'
+            }
+        }
+        stage("git-Verify"){
+            steps{
+               sh 'git --version'
+            }
+        }
+        stage("docker-image-verify"){
+            steps{
+                dir('Labs'){
+                    sh 'pwd'
+                    dir('Task6'){
+                       sh 'docker build -t ${IMAGE_NAME}:${VERSION} .' // docker build -t jenbababab:latest --file ./Labs/Task6/Dockerfile .
+                    }
+                }
+            }
+        }
+        stage("docker-build"){
+            steps{
+                 sh 'docker images | grep -i ${IMAGE_NAME}' // docker build -t jenbababab:latest --file ./Labs/Task6/Dockerfile . 
+                }
+        }
+    }
+  
+}
