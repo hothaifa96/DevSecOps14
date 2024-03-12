@@ -8,7 +8,8 @@ pipeline{
         
     }
     stages{
-        parallel(
+        stage("Verify's") {
+        parallel{
             stage("Docker-Verify"){
                 steps{
                 withCredentials([usernamePassword(credentialsId: 'DockerCred',usernameVariable:'USERNAME',passwordVariable:'PASS')]){
@@ -35,7 +36,8 @@ pipeline{
                 sh 'git --version'
                 }
             }
-        )
+        }
+    }
         
         stage("docker-build"){
             steps{
