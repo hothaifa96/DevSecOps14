@@ -2,11 +2,12 @@ pipeline{
     agent any
     environment {
         IMAGE_NAME='myhttpd'
-        VERSION = 'V${BUILD_ID}.${BUILD_NUMBER}'
+        VERSION = 'v${BUILD_ID}.${BUILD_NUMBER}'
     }
     stages{
         stage("Docker-Verify"){
             steps{
+               echo '${VERSION}'
                sh 'docker --version'
             }
         }
