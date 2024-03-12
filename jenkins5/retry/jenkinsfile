@@ -8,34 +8,34 @@ pipeline{
         
     }
     stages{
-        parallel{
-stage("Docker-Verify"){
-            steps{
-               withCredentials([usernamePassword(credentialsId: 'DockerCred',usernameVariable:'USERNAME',passwordVariable:'PASS')]){
-                    sh 'echo username : ${USERNAME}'
-                    sh 'echo password : ${PASS}'
-                    sh 'docker login --username ${USERNAME} --password ${PASS} https://hub.docker.com'
+        parallel(
+            stage("Docker-Verify"){
+                steps{
+                withCredentials([usernamePassword(credentialsId: 'DockerCred',usernameVariable:'USERNAME',passwordVariable:'PASS')]){
+                        sh 'echo username : ${USERNAME}'
+                        sh 'echo password : ${PASS}'
+                        sh 'docker login --username ${USERNAME} --password ${PASS} https://hub.docker.com'
 
-               }
-               sh 'docker --version'
+                }
+                sh 'docker --version'
+                }
             }
-        }
         
-        stage("internet-Verify"){
-            steps{
-                retry(3){
-                    timeout(time: 1, unit: 'SECONDS'){
-                        sh 'ping -c 1 8.8.8.8&'
+            stage("internet-Verify"){
+                steps{
+                    retry(3){
+                        timeout(time: 1, unit: 'SECONDS'){
+                            sh 'ping -c 1 8.8.8.8&'
+                        }
                     }
                 }
             }
-        }
-        stage("git-Verify"){
-            steps{
-               sh 'git --version'
+            stage("git-Verify"){
+                steps{
+                sh 'git --version'
+                }
             }
-        }
-        }
+        )
         
         stage("docker-build"){
             steps{
