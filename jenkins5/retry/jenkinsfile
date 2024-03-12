@@ -7,7 +7,7 @@ pipeline{
     stages{
         stage("Docker-Verify"){
             steps{
-               sh 'echo ${VERSION}'
+               sh 'ehco ${VERSION}'
                sh 'docker --version'
             }
         }
