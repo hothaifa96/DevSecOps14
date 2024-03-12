@@ -13,6 +13,16 @@ pipeline{
                sh 'docker --version'
             }
         }
+        
+        stage("internet-Verify"){
+            steps{
+                retry(3){
+                    timeout(time: 3, units: 'SECONDS'){
+                        sh 'ping -c 6 8.8.8.8'
+                    }
+                }
+            }
+        }
         stage("git-Verify"){
             steps{
                sh 'git --version'
@@ -24,7 +34,9 @@ pipeline{
                     sh 'pwd'
                     sleep(10)
                     dir('Task6'){
-                       sh 'docker build -t ${IMAGE_NAME}:${VERSION} .' // docker build -t jenbababab:latest --file ./Labs/Task6/Dockerfile .
+                        timeout(time: 4 , unit: 'SECONDS'){
+                            sh 'docker build -t ${IMAGE_NAME}:${VERSION} .' // docker build -t jenbababab:latest --file ./Labs/Task6/Dockerfile .
+                        }
                     }
                 }
             }
