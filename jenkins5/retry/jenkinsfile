@@ -21,7 +21,6 @@ pipeline{
                 sh 'docker --version'
                 }
             }
-        
             stage("internet-Verify"){
                 steps{
                     retry(3){
