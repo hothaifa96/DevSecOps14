@@ -9,6 +9,8 @@ pipeline{
         REGISTRY= 'hub.docker.com'
         ACCOUNT_NAME= 'hothaifaz11/resumee'
         DOCKERHUB_CREDENIALS = credentials('docker')
+        // DOCKERHUB_CREDENIALS_USR
+        // DOCKERHUB_CREDENIALS_PSW
 
     }
     stages{
@@ -39,7 +41,7 @@ pipeline{
         stage("Login to DockerHub"){
             steps{
                 sh 'echo ${DOCKERHUB_CREDENIALS_USR}'
-                sh "echo ${DOCKERHUB_CREDENIALS} | docker login -u hothaifaz11 --password-stdin"
+                sh "echo ${DOCKERHUB_CREDENIALS_PSW} | docker login -u hothaifaz11 --password-stdin"
             }
         
         }
