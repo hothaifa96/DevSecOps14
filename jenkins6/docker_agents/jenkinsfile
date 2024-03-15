@@ -39,7 +39,8 @@ pipeline{
             }
             steps{
                 sh 'pwd'
-                sh 'uname -u'
+                sh 'uname'
+                sh 'uname -m'
             }
         
         }
