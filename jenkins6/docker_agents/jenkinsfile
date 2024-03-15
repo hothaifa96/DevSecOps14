@@ -1,0 +1,59 @@
+pipeline{
+    agent any
+    environment {
+        REPO_URL= 'https://github.com/devopsPRO27/Docker-exercise-3'
+        IMAGE_NAME= 'resume'
+        DIR_NAME='Docker-exercise-3'
+        TAG= "V1.${BUILD_NUMBER}"
+        CONTAINER_NAME= 'sorry'
+        REGISTRY= 'hub.docker.com'
+        ACCOUNT_NAME= 'hothaifaz11/resumee'
+        DOCKERHUB_CREDENIALS = credentials('docker')
+
+    }
+    stages{
+        stage("clone"){
+            steps{
+                sh 'git clone ${REPO_URL}'
+                sh 'pwd'
+                sh 'find .'
+            }
+        
+        }
+        stage("build"){
+            steps{
+                dir('Docker-exercise-3/ResumeMaker/'){
+                    sh 'docker build -t ${IMAGE_NAME}:${TAG} --file ../../jenkins6/if_statments/Dockerfile .'
+                    sh 'docker images'
+                }
+            }
+        
+        }
+        stage("test"){
+            when { branch 'jenkins' }
+            steps{
+                echo "========ejenkins========"
+            }
+        
+        }
+        stage("Login to DockerHub"){
+            steps{
+                sh 'echo ${DOCKERHUB_CREDENIALS}'
+                sh "echo $DOCKERHUB_CREDENIALS |docker login -u hothaifaz11 --password-stdin"
+            }
+        
+        }
+    }
+    post{
+        always{
+            sh 'rm -fr ${DIR_NAME}'
+            sh 'docker rmi -f $(docker images -qa)'
+        }
+        success{
+            echo "========pipeline executed successfully ========"
+        }
+        failure{
+            echo "========pipeline execution failed========"
+        }
+    }
+}
