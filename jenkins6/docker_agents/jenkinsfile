@@ -49,7 +49,7 @@ pipeline{
             steps{
                 sh "docker tag ${IMAGE_NAME}:${TAG} ${ACCOUNT_NAME} "
                 sh "docker images"
-                sh "docker push hothaifaz11/resumee:${TAG}" 
+                sh "docker push ${ACCOUNT_NAME}:${TAG}" 
             }
         
         }
