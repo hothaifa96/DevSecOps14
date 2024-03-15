@@ -33,11 +33,6 @@ pipeline{
             steps{
                 echo "========ejenkins========"
             }
-            when { not {branch 'jenkins' }}
-            steps{
-                echo "========enot jenkns======="
-            }
-        
         
         }
         stage("push"){
