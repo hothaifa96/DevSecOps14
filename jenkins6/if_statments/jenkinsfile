@@ -22,7 +22,7 @@ pipeline{
         stage("build"){
             steps{
                 dir('Docker-exercise-3/ResumeMaker/'){
-                    sh 'docker build -t ${IMAGE_NAME}:${TAG} --file ../../Dockerfile .'
+                    sh 'docker build -t ${IMAGE_NAME}:${TAG} --file ../../jenkins6/if_statments/Dockerfile .'
                     sh 'docker images'
                 }
             }
