@@ -29,10 +29,15 @@ pipeline{
         
         }
         stage("test"){
-            when {not {branch 'jenkins'}}
+            when { branch 'jenkins' }
             steps{
-                echo "========executing A========"
+                echo "========ejenkins========"
             }
+            when { not {branch 'jenkins' }}
+            steps{
+                echo "========enot jenkns======="
+            }
+        
         
         }
         stage("push"){
