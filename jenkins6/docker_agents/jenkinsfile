@@ -45,11 +45,20 @@ pipeline{
             }
         
         }
+        stage("push image"){
+            steps{
+                sh "docker tag ${IMAGE_NAME}:${TAG} ${ACCOUNT_NAME} "
+                sh "docker images"
+                sh "docker push hothaifaz11/resumee:${TAG}" 
+            }
+        
+        }
     }
     post{
         always{
             sh 'rm -fr ${DIR_NAME}'
             sh 'docker rmi -f $(docker images -qa)'
+            sh 'docker logout' 
         }
         success{
             echo "========pipeline executed successfully ========"
