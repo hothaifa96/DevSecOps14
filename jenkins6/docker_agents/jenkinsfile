@@ -32,16 +32,22 @@ pipeline{
         
         }
         stage("test"){
-            when { branch 'jenkins' }
+            agent {
+                docker{
+                    image'ubuntu:latest'
+                }
+            }
             steps{
-                echo "========ejenkins========"
+                sh 'pwd'
+                sh 'whoami'
+                sh 'uname -u'
             }
         
         }
         stage("Login to DockerHub"){
             steps{
                 sh 'echo ${DOCKERHUB_CREDENIALS_USR}'
-                sh "echo ${DOCKERHUB_CREDENIALS_PSW} | docker login -u ${DOCKERHUB_CREDENIALS_USR} --password-stdin"
+                sh "echo ${DOCKERHUB_CREDENIALS_PSW} | docker login -u ${DOCKERHUB_CREDENIALS_USR} --password-stdin "
             }
         
         }

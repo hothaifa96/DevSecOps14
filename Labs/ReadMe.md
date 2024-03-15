@@ -300,7 +300,7 @@ Setup the AWS ECR Repository to meet the below requirements:
 - Search for ECR in the search box -> Select Elastic Container Registry
 - Click on Get Started under the Create a repository
 
-!https://img-c.udemycdn.com/redactor/raw/article_lecture/2022-09-15_12-35-16-3ab929ee683e9a87f90d9b9c6b01287a.JPG
+
 
 - Add the name for your repository as "my-jenkins-project"
 - Scroll Down and Click on Create Repository
@@ -318,7 +318,6 @@ Setup the AWS IAM to meet the below requirements:
 - Select Create Role
 - Select AWS Service -> Under Use Case -> Select EC2 -> Click on Next
 
-!https://img-c.udemycdn.com/redactor/raw/article_lecture/2022-09-15_12-41-18-97265ba48482083bbbe90183fd5dfed1.JPG
 
 - Search for Permission "AmazonEC2ContainerRegistryFullAccess" , select the permission and click next
 - Add Role Name as "Jenkins-ECR-Role" -> Scroll Down and Click on Create Role
@@ -334,7 +333,6 @@ Setup the AWS EC2 to meet the below requirements:
 - Select Instance from left menu
 - Select Jenkins EC2 -> Click on Actions -> Select Security -> Select Modify IAM Role
 
-!https://img-c.udemycdn.com/redactor/raw/article_lecture/2022-09-15_12-47-39-a82330cbfa693c941da37f809864c64d.JPG
 
 - Select "Jenkins-ECR-Role" from Drop Down menu , Click on Update IAM Role
 
