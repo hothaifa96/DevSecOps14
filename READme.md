@@ -62,9 +62,100 @@ jenkins/jenkins
 
 ```
 
-## initAdminPassword
+## jenkins file with all fucntionallity
 
-To retrieve the initial admin password for a Jenkins Docker container, you can use the following command:
-```bash
-docker exec <container_name> cat /var/jenkins_home/secrets/initialAdminPassword
+
+```
+pipeline {
+    agent any
+    
+    parameters {
+        string(name: 'PARAMETER_NAME', defaultValue: 'default', description: 'Description of parameter')
+        choice(name: 'CHOICE_PARAMETER', choices: ['Option1', 'Option2', 'Option3'], description: 'Description of choice parameter')
+    }
+    
+    environment {
+        ENV_VARIABLE = 'value'
+    }
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        
+        stage('Build') {
+            agent {
+                docker {
+                    image 'maven:latest'
+                    args '-v $HOME/.m2:/root/.m2'
+                }
+            }
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+        
+        stage('Test and Deploy') {
+            parallel {
+                stage('Test') {
+                    steps {
+                        sh 'mvn test'
+                    }
+                }
+                stage('Deploy') {
+                    when {
+                        expression {
+                            params.CHOICE_PARAMETER == 'Option1'
+                        }
+                    }
+                    steps {
+                        sh 'echo Deploying...'
+                    }
+                }
+            }
+        }
+        
+        stage('Deploy to Production') {
+            when {
+                branch 'master'
+            }
+            steps {
+                sh 'echo Deploying to production...'
+            }
+        }
+        
+        stage('Notifications') {
+            steps {
+                slackSend(color: '#00FF00', message: "Build successful - ${env.JOB_NAME} ${env.BUILD_NUMBER}")
+                emailext subject: "Build Notification", body: "Build ${env.JOB_NAME} ${env.BUILD_NUMBER} was successful.", to: "user@example.com"
+            }
+        }
+    }
+    
+    post {
+        always {
+            echo 'This will always run'
+        }
+        success {
+            echo 'This will run only if successful'
+        }
+        failure {
+            echo 'This will run only if failed'
+        }
+        unstable {
+            echo 'This will run only if unstable'
+        }
+        changed {
+            echo 'This will run only if the state changed'
+        }
+        aborted {
+            echo 'This will run only if aborted'
+        }
+        cleanup {
+            echo 'This will run at the end of pipeline'
+        }
+    }
+}
 ```
