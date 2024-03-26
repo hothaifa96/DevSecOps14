@@ -1,4 +1,5 @@
-* Bash Labs
+# Bash Labs
+## Lab 1
 1. Write a Bash script that prints "Hello, World!" to the console.
 2. Add an additional command to your script that will print out the current date and time in the following format: "Today's date is: Month Day, Year, and the time is: Hour:Minute AM/PM".
 3. Write a shell script that prints “Shell Scripting is Fun!” on the screen
@@ -24,3 +25,4 @@
 23. Write a script to determine if a given year is a leap year or not.
 24. Create a script to prompt the user for their age and determine if they are eligible to vote.
 25. [challenge] Script to clone a Git repository, install pip, and run Python code with error handling
+## Lab 2 
